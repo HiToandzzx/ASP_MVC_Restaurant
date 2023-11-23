@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Project_63135741ModelStoreContainer" CdmEntityContainer="Project_63135741Entities">
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="Project_63135741Model.Food">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="FoodsID" ColumnName="FoodsID" />
+          <ScalarProperty Name="PicFood" ColumnName="PicFood" />
+          <ScalarProperty Name="FoodsName" ColumnName="FoodsName" />
+          <ScalarProperty Name="Descrip" ColumnName="Descrip" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="KindID" ColumnName="KindID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KindOfMenus">
+      <EntityTypeMapping TypeName="Project_63135741Model.KindOfMenu">
+        <MappingFragment StoreEntitySet="KindOfMenu">
+          <ScalarProperty Name="KindID" ColumnName="KindID" />
+          <ScalarProperty Name="NameOfKind" ColumnName="NameOfKind" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookTables">
+      <EntityTypeMapping TypeName="Project_63135741Model.BookTable">
+        <MappingFragment StoreEntitySet="BookTable">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="DayBook" ColumnName="DayBook" />
+          <ScalarProperty Name="TimeBook" ColumnName="TimeBook" />
+          <ScalarProperty Name="QuantityPP" ColumnName="QuantityPP" />
+          <ScalarProperty Name="PhoneCus" ColumnName="PhoneCus" />
+          <ScalarProperty Name="NameCus" ColumnName="NameCus" />
+          <ScalarProperty Name="BookTableID" ColumnName="BookTableID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Find_Menu" FunctionName="Project_63135741Model.Store.Find_Menu" />
+  </EntityContainerMapping>
+</Mapping>

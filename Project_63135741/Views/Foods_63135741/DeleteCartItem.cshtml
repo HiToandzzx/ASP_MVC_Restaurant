@@ -1,0 +1,48 @@
+﻿@model Project_63135741.Models.CartItem
+
+@{
+    ViewBag.Title = "Delete cart item";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="text-danger mb-4">Are you sure to cancel this item?</h1>
+<table class="table table-bordered text-center">
+    <thead style="background-color: #bf0000; color: #fff;">
+        <tr>
+            <th>Food ID</th>
+            <th>Food Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.FoodID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.FoodsName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Price)
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a href="@Url.Action("Cart", "Foods_63135741/Cart")" class="btn btn-outline-primary">Back</a>
+}
+
+
+
+

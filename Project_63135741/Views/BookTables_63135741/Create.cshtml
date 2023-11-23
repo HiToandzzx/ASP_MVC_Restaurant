@@ -1,0 +1,122 @@
+﻿@model Project_63135741.Models.BookTable
+
+@{
+    ViewBag.Title = "Book the table | Takumi Restaurant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+}
+
+<div class="card-group ">
+    <div class="card" style=" display: grid; justify-content: center; align-items: center; border-radius: 30px 0 0 30px;">
+        @using (Html.BeginForm("Create", "BookTables_63135741", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <i class='bx bx-dots-horizontal-rounded'></i>
+                <h1 class="mb-3">Book the table</h1>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BookTableID, "Book table ID", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        <input type="text" value="@ViewBag.BookTableID" disabled readonly class="form-control" />
+                        @Html.ValidationMessageFor(model => model.BookTableID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameCus, "Full Name", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NameCus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameCus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneCus, "Phone Number", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PhoneCus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneCus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuantityPP, "Quantity of member", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuantityPP, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuantityPP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TimeBook, "Time book table", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TimeBook, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+                        @Html.ValidationMessageFor(model => model.TimeBook, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DayBook, "Day book table", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DayBook, new { htmlAttributes = new { @class = "form-control", type="date"} })
+                        @Html.ValidationMessageFor(model => model.DayBook, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Note, "Note", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 mb-4">
+                    <input type="submit" value="Book the table" class="btn btn-book" />
+                    <a href="@Url.Action("Index", "BookTables_63135741/Index")" class="btn btn-view">View orders</a>
+                </div>
+
+            </div>
+        }
+    </div>
+    <div class="card" style="border: none;">
+        <img src="~/Images/BookTable/book-table.jpg" class="d-block" style="object-fit: cover; border-radius: 0 30px 30px 0; max-height: 750px;">
+    </div>
+</div>
+
+<style>
+    .btn-book {
+        color: #fff;
+        background-color: #bf0000;
+        border: 1px solid red;
+        padding: 20px 20px;
+        border-radius: 20px;
+    }
+
+        .btn-book:hover {
+            color: #bf0000;
+            background-color: #fff;
+            border: 1px solid red;
+        }
+
+    .btn-view {
+        margin-left: 10px;
+        color: #bf0000;
+        background-color: #fff;
+        border: 1px solid #bf0000;
+        padding: 20px 20px;
+        border-radius: 20px;
+    }
+
+        .btn-view:hover {
+            color: #fff;
+            background-color: #bf0000;
+            border: 1px solid #bf0000;
+        }
+
+    .control-label{
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>

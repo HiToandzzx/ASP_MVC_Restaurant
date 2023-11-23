@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Your cart | Takumi Restaurant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    int totalQuantity = 0;
+    decimal totalPrice = 0;
+
+}
+<div class="container">
+    <i class='bx bx-dots-horizontal-rounded'></i>
+    <h1 class="mb-5">Your cart</h1>
+    <table class="table table-bordered text-center">
+        <thead style="background-color: #bf0000; color: #fff;">
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FoodsName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a href="@Url.Action("EditCartItem", new { id = item.FoodID})" class="edit-btn">
+                            <i class='bx bx-message-square-edit' style="font-size: 1.5rem;"></i>
+                        </a>
+                        <a href="@Url.Action("DeleteCartItem", new { id = item.FoodID})" class="delete-btn">
+                            <i class='bx bx-message-square-x' style="font-size: 1.5rem;"></i>
+                        </a>
+                    </td>
+                </tr>
+                totalQuantity += item.Quantity;
+                totalPrice += item.Quantity * item.Price;
+            }
+        </tbody>
+
+    </table>
+    <span id="displayTotalQuantity"></span>
+
+    <div class="col mt-5" style="display: grid; justify-content:center;">
+        <div class="row-md-6">
+            <p> <span class="total">Total Quantity:</span><span class="quantityValue"> @totalQuantity</span></p>
+        </div>
+        <div class="row-md-6">
+            <p><span class="total">Total Price: </span>$@totalPrice</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .total {
+        font-weight: bold;
+    }
+
+    .bx-message-square-edit {
+        color: #039f00;
+    }
+
+        .bx-message-square-edit:hover {
+            color: #025700;
+        }
+
+    .bx-message-square-x {
+        color: red;
+    }
+
+        .bx-message-square-x:hover {
+            color: #980000;
+        }
+
+    tbody tr td a {
+        text-decoration: none;
+        color: #111;
+    }
+</style>
+

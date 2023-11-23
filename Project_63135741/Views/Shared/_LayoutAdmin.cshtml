@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("/Content/css")
+    <link href="/icon.ico" rel="icon" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img id="logo" src="~/Images/logo.png" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link @if(ViewContext.RouteData.Values["Controller"].ToString() == "Home_63135741") { <text>active-tab</text> } ?>" href="@Url.Action("Index", "Home_63135741/Index")">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(ViewContext.RouteData.Values["Controller"].ToString() == "About_63135741") { <text>active-tab</text> } ?>" href="@Url.Action("Index", "About_63135741/Index")">
+                                About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(ViewContext.RouteData.Values["Controller"].ToString() == "Foods_63135741") { <text>active-tab</text> } ?>" href="@Url.Action("Index", "Foods_63135741/Index")">
+                                Menu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(ViewContext.RouteData.Values["Controller"].ToString() == "BookTables_63135741") { <text>active-tab</text> } ?>" href="@Url.Action("Create", "BookTables_63135741/Create")">
+                                Book the table
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(ViewContext.RouteData.Values["Controller"].ToString() == "Contact_63135741") { <text>active-tab</text> } ?>" href="@Url.Action("Index", "Contact_63135741/Index")">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <a class="cart" href="@Url.Action("Cart", "Foods_63135741/Cart")">
+                        <img src="~/Images/cart.png" style="width: 50px; height: 50px">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container mb-5">
+        @RenderBody()
+    </div>
+
+    <hr />
+    <footer class="footer-grid mb-3">
+        <div class="follow">
+            <h3 class="text-center">Follow Us</h3>
+            <div class="text-center">
+                <a href="https://www.facebook.com/Takumi.Restaurant"><i class='bx bxl-facebook icon'></i></a>
+                <a href="https://www.instagram.com/takumirestaurante/"><i class='bx bxl-instagram icon'></i></a>
+                <a href="https://www.instagram.com/takumirestaurante/"><i class='bx bxl-twitter icon'></i></a>
+                <a href="https://www.instagram.com/takumirestaurante/"><i class='bx bxl-linkedin-square icon'></i></a>
+            </div>
+
+
+            <br />
+
+            <div class="visit text-center">
+                <p class="mt-3">Visit us: <span>98 Mai Hắc Đế, Hai Bà Trưng, Hà Nội</span></p>
+                <p>Monday - Friday: <span>18h00 - 23h00</span></p>
+                <p>Saturday - Sunday: <span>16h00 - 01h00</span></p>
+            </div>
+        </div>
+
+        <div class="page text-center">
+            <h3>Page</h3>
+            <a class="nav-link mt-4" href="#">
+                @Html.ActionLink("Home", "../Home_63135741/Index", new { @class = "a" })
+            </a>
+            <a class="nav-link" href="#">
+                @Html.ActionLink("About", "../About_63135741/Index", new { @class = "a" })
+            </a>
+            <a class="nav-link" href="#">
+                @Html.ActionLink("Menu", "../Foods_63135741/Index", new { @class = "a" })
+            </a>
+            <a class="nav-link" href="#">
+                @Html.ActionLink("Book the table", "../BookTables_63135741/Create", new { @class = "a" })
+            </a>
+            <a class="nav-link" href="#">
+                @Html.ActionLink("Contact", "../Contact_63135741/Index", new { @class = "a" })
+            </a>
+        </div>
+
+        <div class="img">
+            <img src="~/Images/img-loca.jpg" />
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>
+
+<style>
+    * {
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 17px;
+    }
+
+    .nav-item{
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .collapse {
+        justify-content: end;
+    }
+
+    .navbar {
+        min-width: 200px;
+    }
+
+    .container-fluid {
+        backdrop-filter: blur(5px);
+        color: #6e6e6e;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, .8);
+        z-index: 1000;
+    }
+
+    #logo {
+        height: 80px;
+        padding-left: 40px;
+    }
+
+    .container {
+        margin-top: 100px;
+    }
+
+    .p-footer {
+        color: #111;
+        font-size: 15px;
+    }
+
+        .p-footer span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+    .img-loca {
+        width: 100%;
+        max-height: 200px;
+    }
+
+    .link-ins {
+        color: #111;
+        text-decoration: none;
+    }
+
+        .link-ins:hover {
+            color: red;
+        }
+
+    .img-fluid {
+        max-height: 350px;
+    }
+
+    .bx {
+        font-size: 50px;
+    }
+
+    .bx-dots-horizontal-rounded {
+        color: red;
+    }
+
+    .icon {
+        color: #111;
+        font-size: 30px;
+        margin-right: 20px;
+    }
+
+    .bxl-facebook:hover {
+        color: blue;
+    }
+
+    .bxl-instagram:hover {
+        color: orangered;
+    }
+
+    .bxl-twitter:hover {
+        color: #49c5fc;
+    }
+
+    .bxl-linkedin-square:hover {
+        color: #2a5bff;
+    }
+
+    .text-center h5 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .img-loca {
+        width: 100%;
+        max-height: 200px;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .page a {
+        text-decoration: none;
+        color: #111;
+        margin-top: 10px;
+    }
+
+        .page a:hover {
+            text-decoration: none;
+            color: red;
+            margin-top: 10px;
+        }
+
+    .img img {
+        vertical-align: middle;
+        display: inline-block;
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .visit span {
+        justify-content: start;
+        color: red;
+    }
+
+    .active-tab{
+        color: red;
+    }
+</style>
+
+
+
+
+

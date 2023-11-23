@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Project_63135741.Models.BookTable>
+
+@{
+    ViewBag.Title = "View Order";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "NameCus", rowsPerPage: 2);
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+}
+
+<html>
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <a href="@Url.Action("Create", "BookTables_63135741/Create")" class="btn">New orders</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div id="gridContent" class="table-responsive text-center">
+                    @ViewBag.TB
+                    @grid.GetHtml(
+                        tableStyle: "table table-bordered table-hover",
+                        footerStyle: "grid-footer",
+                        fillEmptyRows: true,
+                        mode: WebGridPagerModes.Numeric,
+                        alternatingRowStyle: "alternatingRowStyle",
+                        columns: new[]
+                        {
+                            grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+                            grid.Column("BookTableID","Book Table ID"),
+                            grid.Column("NameCus","Full Name"),
+                            grid.Column("PhoneCus","Phone Number"),
+                            grid.Column("QuantityPP","Quantity Of People"),
+                            grid.Column("TimeBook","Time Order"),
+                            grid.Column("DayBook","Day Order",format:@<text> @item.DayBook.ToString("dd/MM/yyyy")</text>),
+                            grid.Column("Note","Note"),
+                            grid.Column("Function", format: @<text>
+                                <a href="@Url.Action("Edit", new { id = item.BookTableID})" class="edit-btn">
+                                    <i class='bx bx-message-square-edit' style="font-size: 1.5rem;"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.BookTableID})" class="delete-btn">
+                                    <i class='bx bx-message-square-x' style="font-size: 1.5rem;"></i>
+                                </a>
+                            </text>),
+                        }
+                    )
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<style>
+   
+
+    .btn {
+        color: #fff;
+        background-color: #bf0000;
+        border: 1px solid red;
+        padding: 20px 20px;
+        border-radius: 20px;
+    }
+
+        .btn:hover {
+            color: #bf0000;
+            background-color: #fff;
+            border: 1px solid red;
+        }
+
+    .bx-message-square-edit {
+        color: #039f00;
+    }
+
+    .bx-message-square-edit:hover {
+        color: #025700;
+    }
+
+    .bx-message-square-x{
+        color: red;
+    }
+
+    .bx-message-square-x:hover {
+        color: #980000;
+    }
+
+    #gridContent a {
+        text-decoration: none;
+        color: #111;
+    }
+</style>
+
+
+

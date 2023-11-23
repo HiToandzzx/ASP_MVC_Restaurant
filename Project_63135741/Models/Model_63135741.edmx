@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Project_63135741Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookTable">
+          <Key>
+            <PropertyRef Name="BookTableID" />
+          </Key>
+          <Property Name="BookTableID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NameCus" Type="nvarchar(max)" />
+          <Property Name="PhoneCus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="QuantityPP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimeBook" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DayBook" Type="date" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Foods">
+          <Key>
+            <PropertyRef Name="FoodsID" />
+          </Key>
+          <Property Name="FoodsID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PicFood" Type="nvarchar(max)" />
+          <Property Name="FoodsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descrip" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KindID" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KindOfMenu">
+          <Key>
+            <PropertyRef Name="KindID" />
+          </Key>
+          <Property Name="KindID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NameOfKind" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Foods__KindID__1332DBDC">
+          <End Role="KindOfMenu" Type="Self.KindOfMenu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Foods" Type="Self.Foods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfMenu">
+              <PropertyRef Name="KindID" />
+            </Principal>
+            <Dependent Role="Foods">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Find_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MenuName" Type="nvarchar" Mode="In" />
+          <Parameter Name="KindID" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Project_63135741ModelStoreContainer">
+          <EntitySet Name="BookTable" EntityType="Self.BookTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Foods" EntityType="Self.Foods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KindOfMenu" EntityType="Self.KindOfMenu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Foods__KindID__1332DBDC" Association="Self.FK__Foods__KindID__1332DBDC">
+            <End Role="KindOfMenu" EntitySet="KindOfMenu" />
+            <End Role="Foods" EntitySet="Foods" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Project_63135741Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodsID" />
+          </Key>
+          <Property Name="FoodsID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PicFood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FoodsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descrip" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KindID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KindOfMenu" Relationship="Self.FK__Foods__KindID__5AEE82B9" FromRole="Foods" ToRole="KindOfMenu" />
+        </EntityType>
+        <EntityType Name="KindOfMenu">
+          <Key>
+            <PropertyRef Name="KindID" />
+          </Key>
+          <Property Name="KindID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameOfKind" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Foods" Relationship="Self.FK__Foods__KindID__5AEE82B9" FromRole="KindOfMenu" ToRole="Foods" />
+        </EntityType>
+        <Association Name="FK__Foods__KindID__5AEE82B9">
+          <End Role="KindOfMenu" Type="Self.KindOfMenu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Foods" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfMenu">
+              <PropertyRef Name="KindID" />
+            </Principal>
+            <Dependent Role="Foods">
+              <PropertyRef Name="KindID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Project_63135741Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="KindOfMenus" EntityType="Self.KindOfMenu" />
+          <AssociationSet Name="FK__Foods__KindID__5AEE82B9" Association="Self.FK__Foods__KindID__5AEE82B9">
+            <End Role="KindOfMenu" EntitySet="KindOfMenus" />
+            <End Role="Foods" EntitySet="Foods" />
+          </AssociationSet>
+          <EntitySet Name="BookTables" EntityType="Project_63135741Model.BookTable" />
+          <FunctionImport Name="Find_Menu">
+            <Parameter Name="MenuName" Mode="In" Type="String" />
+            <Parameter Name="KindID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="BookTable">
+          <Key>
+            <PropertyRef Name="BookTableID" />
+          </Key>
+          <Property Name="BookTableID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NameCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneCus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuantityPP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeBook" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="DayBook" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Project_63135741ModelStoreContainer" CdmEntityContainer="Project_63135741Entities">
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="Project_63135741Model.Food">
+              <MappingFragment StoreEntitySet="Foods">
+                <ScalarProperty Name="FoodsID" ColumnName="FoodsID" />
+                <ScalarProperty Name="PicFood" ColumnName="PicFood" />
+                <ScalarProperty Name="FoodsName" ColumnName="FoodsName" />
+                <ScalarProperty Name="Descrip" ColumnName="Descrip" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="KindID" ColumnName="KindID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KindOfMenus">
+            <EntityTypeMapping TypeName="Project_63135741Model.KindOfMenu">
+              <MappingFragment StoreEntitySet="KindOfMenu">
+                <ScalarProperty Name="KindID" ColumnName="KindID" />
+                <ScalarProperty Name="NameOfKind" ColumnName="NameOfKind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookTables">
+            <EntityTypeMapping TypeName="Project_63135741Model.BookTable">
+              <MappingFragment StoreEntitySet="BookTable">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="DayBook" ColumnName="DayBook" />
+                <ScalarProperty Name="TimeBook" ColumnName="TimeBook" />
+                <ScalarProperty Name="QuantityPP" ColumnName="QuantityPP" />
+                <ScalarProperty Name="PhoneCus" ColumnName="PhoneCus" />
+                <ScalarProperty Name="NameCus" ColumnName="NameCus" />
+                <ScalarProperty Name="BookTableID" ColumnName="BookTableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Find_Menu" FunctionName="Project_63135741Model.Store.Find_Menu" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

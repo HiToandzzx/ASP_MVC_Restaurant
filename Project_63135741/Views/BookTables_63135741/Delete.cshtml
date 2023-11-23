@@ -1,0 +1,102 @@
+﻿@model Project_63135741.Models.BookTable
+
+@{
+    ViewBag.Title = "Delete Order";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h3 class="text-center" style="color: red; text-transform: uppercase;">Are you sure to cancel this order?</h3>
+<div>
+    <dl class="dl-horizontal mt-5" style="display: grid; align-items: center; justify-content: center;">
+        <dt>
+            <label>Full Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameCus)
+        </dd>
+
+        <dt>
+            <label>Phone Number</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneCus)
+        </dd>
+
+        <dt>
+            <label>Quantity Of Member</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityPP)
+        </dd>
+
+        <dt>
+            <label>Time book table</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeBook)
+        </dd>
+
+        <dt>
+            <label>Day book table</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayBook)
+        </dd>
+
+        <dt>
+            <label>Note</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Cancel" class="btn btn-cancel" />
+            <a href="@Url.Action("Index", "BookTables_63135741/Index")" class="btn btn-back">Back</a>
+
+        </div>
+    }
+</div>
+
+<style>
+    .btn-cancel {
+        color: #fff;
+        background-color: #bf0000;
+        border: 1px solid red;
+        padding: 20px 20px;
+        border-radius: 20px;
+    }
+
+        .btn-cancel:hover {
+            color: #bf0000;
+            background-color: #fff;
+            border: 1px solid red;
+        }
+
+    .btn-back {
+        margin-left: 10px;
+        color: #bf0000;
+        background-color: #fff;
+        border: 1px solid #bf0000;
+        padding: 20px 20px;
+        border-radius: 20px;
+    }
+
+        .btn-back:hover {
+            color: #fff;
+            background-color: #bf0000;
+            border: 1px solid #bf0000;
+        }
+</style>

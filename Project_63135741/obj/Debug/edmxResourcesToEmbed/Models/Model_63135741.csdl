@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project_63135741Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="FoodsID" />
+    </Key>
+    <Property Name="FoodsID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PicFood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FoodsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descrip" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="KindID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="KindOfMenu" Relationship="Self.FK__Foods__KindID__5AEE82B9" FromRole="Foods" ToRole="KindOfMenu" />
+  </EntityType>
+  <EntityType Name="KindOfMenu">
+    <Key>
+      <PropertyRef Name="KindID" />
+    </Key>
+    <Property Name="KindID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameOfKind" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Foods" Relationship="Self.FK__Foods__KindID__5AEE82B9" FromRole="KindOfMenu" ToRole="Foods" />
+  </EntityType>
+  <Association Name="FK__Foods__KindID__5AEE82B9">
+    <End Role="KindOfMenu" Type="Self.KindOfMenu" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Foods" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KindOfMenu">
+        <PropertyRef Name="KindID" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="KindID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Project_63135741Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Foods" EntityType="Self.Food" />
+    <EntitySet Name="KindOfMenus" EntityType="Self.KindOfMenu" />
+    <AssociationSet Name="FK__Foods__KindID__5AEE82B9" Association="Self.FK__Foods__KindID__5AEE82B9">
+      <End Role="KindOfMenu" EntitySet="KindOfMenus" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+    <EntitySet Name="BookTables" EntityType="Project_63135741Model.BookTable" />
+    <FunctionImport Name="Find_Menu">
+      <Parameter Name="MenuName" Mode="In" Type="String" />
+      <Parameter Name="KindID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="BookTable">
+    <Key>
+      <PropertyRef Name="BookTableID" />
+    </Key>
+    <Property Name="BookTableID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NameCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneCus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuantityPP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimeBook" Type="Time" Precision="7" Nullable="false" />
+    <Property Name="DayBook" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Contact | Takumi Restaurant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+}
+
+<i class='bx bx-dots-horizontal-rounded'></i>
+<h1 class="mb-5">Stay in touch</h1>
+<div class="card-group mt-5">
+    <div class="card">
+        <img src="~/Images/Contact/bg-contact.jpg" class="d-block" style="object-fit: cover; border-radius: 20px 0 0 20px; height: 400px; ">
+    </div>
+    <div class="card" style="display: grid; justify-content: center; align-items: center;">
+        <div class="card-body" style="color: #111;">
+            <div class="col">
+                <div class="row-4 mb-4">
+                    <i class='bx bxs-phone'></i> <br />
+                    <span> Call us:</span> 093 686 80 80
+                </div>
+                <div class="row-4 mb-4">
+                    <i class='bx bx-envelope'></i> <br />
+                    <span> Email us:</span> info@cherrygroup.com.vn
+                </div>
+                <div class="row-4">
+                    <i class='bx bx-current-location'></i> <br />
+                    <span>  Visit us:</span> 98 Mai Hắc Đế, Hai Bà Trưng, Hà Nội
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container text-center">
+        <i class='bx bx-dots-horizontal-rounded'></i>
+        <h1 class="text-center mb-5">Follow us on Instagram</h1>
+        <div class="row">
+            <div class="col">
+                <img src="~/Images/About/ins2.jpg" class="img-fluid">
+            </div>
+            <div class="col">
+                <img src="~/Images/About/ins3.jpg" class="img-fluid">
+
+            </div>
+            <div class="col">
+                <img src="~/Images/About/ins4.jpg" class="img-fluid">
+
+            </div>
+            <div class="col">
+                <img src="~/Images/About/ins5.png" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<i class='bx bx-dots-horizontal-rounded mt-4'></i>
+<h1 class="mb-5">Browse our menu</h1>
+<div class="card-group text-center">
+    <div class="card p-2" style="border: none; background-color: #f0efef;">
+        <h5 class="card-title" style="font-size: 40px;">Menu</h5>
+        <img src="~/Images/Home/bg-foods.jpg" class="d-block p-4" style="height: 300px; border-radius: 50px; object-fit: cover; ">
+        <div class="card-body">
+            <a href="@Url.Action("Index", "Foods_63135741/Index")" class="btn">Discover</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+    }
+
+    h1 {
+        font-size: 55px;
+        font-weight: 600;
+        line-height: 62px;
+    }
+
+
+    img {
+        width: 100%;
+        max-height: 500px;
+        border-radius: 30px 30px 30px 30px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 20px;
+    }
+
+    .card-text {
+        text-align: center;
+    }
+
+    .btn {
+        margin-top: 10px;
+        width: 30%;
+        color: #fff;
+        background-color: #f82626;
+        border-radius: 20px;
+    }
+
+        .btn:hover {
+            color: #f82626;
+            background-color: #fff;
+            border: 1px solid red;
+        }
+
+    .row-4 i {
+        color: #bf0000;
+        font-size: 40px;
+    }
+
+    .row-4 span {
+        font-weight: bold;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+</style>

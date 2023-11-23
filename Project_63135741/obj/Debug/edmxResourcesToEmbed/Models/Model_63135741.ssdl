@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project_63135741Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookTable">
+    <Key>
+      <PropertyRef Name="BookTableID" />
+    </Key>
+    <Property Name="BookTableID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NameCus" Type="nvarchar(max)" />
+    <Property Name="PhoneCus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="QuantityPP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TimeBook" Type="time" Precision="7" Nullable="false" />
+    <Property Name="DayBook" Type="date" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Foods">
+    <Key>
+      <PropertyRef Name="FoodsID" />
+    </Key>
+    <Property Name="FoodsID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PicFood" Type="nvarchar(max)" />
+    <Property Name="FoodsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descrip" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="KindID" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KindOfMenu">
+    <Key>
+      <PropertyRef Name="KindID" />
+    </Key>
+    <Property Name="KindID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NameOfKind" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Foods__KindID__1332DBDC">
+    <End Role="KindOfMenu" Type="Self.KindOfMenu" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Foods" Type="Self.Foods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KindOfMenu">
+        <PropertyRef Name="KindID" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="KindID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Find_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuName" Type="nvarchar" Mode="In" />
+    <Parameter Name="KindID" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="Project_63135741ModelStoreContainer">
+    <EntitySet Name="BookTable" EntityType="Self.BookTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Foods" EntityType="Self.Foods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KindOfMenu" EntityType="Self.KindOfMenu" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Foods__KindID__1332DBDC" Association="Self.FK__Foods__KindID__1332DBDC">
+      <End Role="KindOfMenu" EntitySet="KindOfMenu" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,105 @@
+﻿@*@model IEnumerable<Project_63135741.Models.Food>*@
+@model List<Project_63135741.Models.Food>
+
+
+@{
+    ViewBag.Title = "Menu | Takumi Restaurant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container" style="display: grid; justify-content:center;">
+    @using (Html.BeginForm("Index", "Foods_63135741", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col">
+            <div class="row-md-4">
+                <div class="form-group">
+                    <label for="FoodsName">Name</label>
+                    <input type="text" class="form-control" name="FoodsName" value="@ViewBag.FoodsName" />
+                </div>
+            </div>
+            <div class="row-md-4 mt-3">
+                <div class="form-group">
+                    <label for="KindID">Kind of menu</label>
+                    @Html.DropDownList("KindID", null, "All", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="row-md-4 mt-4">
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Find" class="btn btn-success" />
+                    <input type="button" name="Nhapmoi" value="Reset" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Foods_63135741/Index")'" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm6 col-md-4 lg-3" id="margin-card">
+                <div class="card mb-5  text-center">
+                    <img src="/Images/Foods/@Html.DisplayFor(modelItem => item.PicFood)" class="card-img-top foods" alt="Food Image">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @Html.DisplayFor(modelItem => item.FoodsName)
+                        </h5>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.Descrip)
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p style="color: red;">
+                            $@Html.DisplayFor(modelItem => item.Price)
+                            <a class="btn btn-outline-primary" href="/Foods_63135741/AddToCart/@item.FoodsID" onclick="showAlert(event)">
+                                Add to cart
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function showAlert(event) {
+        event.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            title: 'Added to cart!',
+            showConfirmButton: false,
+            timer: 1000 // Hiển thị thông báo trong 1 giây
+        }).then(() => {
+            window.location.href = event.target.href; // Sau khi thông báo đóng, chuyển hướng đến trang AddToCart
+        });
+    }
+</script>
+
+
+
+<style>
+    .foods {
+        height: 250px;
+        object-fit: cover;
+        border-radius: 30px 30px 0 0;
+    }
+
+    .card {
+        border-radius: 30px;
+        height: 450px;
+    }
+
+    .btn {
+        margin-left: 20px;
+        font-weight: bold;
+    }
+</style>
+
