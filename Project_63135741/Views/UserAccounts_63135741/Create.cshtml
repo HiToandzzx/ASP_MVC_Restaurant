@@ -1,0 +1,155 @@
+﻿@model Project_63135741.Models.UserAccount
+
+@{
+    ViewBag.Title = "Sign Up | Takumi Restaurant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+}
+
+
+@using (Html.BeginForm("Create", "UserAccounts_63135741", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section>
+        <div class="container py-3">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-lg-5">
+                                <div class="card-body p-4 p-lg-6 d-grid justify-content-center align-items-center mt-4">
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                    </div>
+                                    <img class="logo" src="~/Images/logo.png" />
+
+                                    <div class="mb-4">
+                                        @Html.LabelFor(model => model.UserName, "Full Name", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", id = "username" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="mb-4">
+                                        @Html.LabelFor(model => model.AddressUser, "Address", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.AddressUser, new { htmlAttributes = new { @class = "form-control", id = "addressuser" } })
+                                        @Html.ValidationMessageFor(model => model.AddressUser, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="mb-4">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email", placeholder = "example@gmail.com" }, id="email" })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="mb-4">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", id = "password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="mb-4">
+                                        @Html.LabelFor(model => model.Password, "Confirm Password", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", id = "confirmPassword" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <input type="submit" value="Register" class="btn btn-primary resgister" onclick="showAlert(event)"/>
+                                        <a href="@Url.Action("Login_63135741", "UserAccounts_63135741/Login_63135741")"><i class='bx bx-arrow-back mt-3 d-flex justify-content-center'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-none d-md-block">
+                                <img src="~/Images/About/res.jpg" style="width: 100%; height: 775px; border-radius: 0 20px 20px 0; object-fit: cover; " />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.resgister').on('click', function (e) {
+            var username = $('#username').val();
+            var addressuser = $('#addressuser').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            // Kiểm tra tên user
+            if (!username) {
+                e.preventDefault();
+                alert('Please enter an your name.');
+                return;
+            }
+
+            // Kiểm tra địa chỉ user
+            if (!addressuser) {
+                e.preventDefault();
+                alert('Please enter an your address.');
+                return;
+            }
+
+            // Kiểm tra mật khẩu
+            if (!password) {
+                e.preventDefault();
+                alert('Please enter an your password.');
+                return;
+            }
+
+            // Kiểm tra confirmPassword
+            if (!confirmPassword) {
+                e.preventDefault();
+                alert('Please confirm your password.');
+                return;
+            }
+
+            // Kiểm tra độ dài mật khẩu
+            if (password.length < 8) {
+                e.preventDefault();
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+
+            var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%^&*()_+}{"\':;?/>.<,])(?!.*\s).{8,}$/;
+            if (!regex.test(password)) {
+                e.preventDefault();
+                alert('Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long.');
+                return;
+            }
+
+            // Kiểm tra mật khẩu và mật khẩu xác nhận
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match. Please enter matching passwords.');
+                return;
+            }
+        });
+    });
+</script>
+
+
+<style>
+    .logo {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 20px;
+        object-fit: cover;
+    }
+
+    .resgister {
+        width: 100%;
+    }
+
+    .mb-4 a {
+        text-decoration: none;
+    }
+</style>

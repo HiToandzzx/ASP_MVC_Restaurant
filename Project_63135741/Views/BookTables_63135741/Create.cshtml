@@ -16,13 +16,13 @@
                 <i class='bx bx-dots-horizontal-rounded'></i>
                 <h1 class="mb-3">Book the table</h1>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.BookTableID, "Book table ID", htmlAttributes: new { @class = "control-label" })
                     <div class="col-md-10">
                         <input type="text" value="@ViewBag.BookTableID" disabled readonly class="form-control" />
                         @Html.ValidationMessageFor(model => model.BookTableID, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.NameCus, "Full Name", htmlAttributes: new { @class = "control-label" })

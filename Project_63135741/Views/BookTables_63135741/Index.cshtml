@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Project_63135741.Models.BookTable>
 
 @{
-    ViewBag.Title = "View Order";
+    ViewBag.Title = "View Order | Takumi Restaurant";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var grid = new WebGrid(Model, canPage: true, defaultSort: "NameCus", rowsPerPage: 2);
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -30,7 +30,6 @@
                         columns: new[]
                         {
                             grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
-                            grid.Column("BookTableID","Book Table ID"),
                             grid.Column("NameCus","Full Name"),
                             grid.Column("PhoneCus","Phone Number"),
                             grid.Column("QuantityPP","Quantity Of People"),

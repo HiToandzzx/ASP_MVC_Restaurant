@@ -2,6 +2,8 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
 <main aria-labelledby="title">
@@ -51,15 +53,5 @@
                         </p>*@
                 }
             </section>
-        </div>
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
     </div>
 </main>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

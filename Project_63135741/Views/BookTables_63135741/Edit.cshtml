@@ -60,7 +60,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.DayBook, "Day book table", htmlAttributes: new { @class = "control-label" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DayBook, new { htmlAttributes = new { @class = "form-control", @Value = Model.DayBook?.ToString("yyyy-MM-dd") } })
+                        @Html.EditorFor(model => model.DayBook, new { htmlAttributes = new { @class = "form-control", @Value = Model.DayBook.ToString("yyyy-MM-dd") } }) 
                         @Html.ValidationMessageFor(model => model.DayBook, "", new { @class = "text-danger" })
                     </div>
                 </div>

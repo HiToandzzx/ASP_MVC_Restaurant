@@ -11,7 +11,8 @@ namespace Project_63135741.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class BookTable
     {
         public string BookTableID { get; set; }
@@ -19,7 +20,10 @@ namespace Project_63135741.Models
         public string PhoneCus { get; set; }
         public string QuantityPP { get; set; }
         public System.TimeSpan TimeBook { get; set; }
-        public Nullable<System.DateTime> DayBook { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime DayBook { get; set; }
         public string Note { get; set; }
     }
 }

@@ -179,6 +179,7 @@
     <Compile Include="Controllers\Foods_63135741Controller.cs" />
     <Compile Include="Controllers\Home_63135741Controller.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserAccounts_63135741Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +210,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_63135741.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserAccount.cs">
+      <DependentUpon>Model_63135741.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -313,6 +317,13 @@
     <Content Include="Views\Foods_63135741\Cart.cshtml" />
     <Content Include="Views\Foods_63135741\DeleteCartItem.cshtml" />
     <Content Include="Views\Foods_63135741\EditCartItem.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserAccounts_63135741\Create.cshtml" />
+    <Content Include="Views\UserAccounts_63135741\Delete.cshtml" />
+    <Content Include="Views\UserAccounts_63135741\Details.cshtml" />
+    <Content Include="Views\UserAccounts_63135741\Edit.cshtml" />
+    <Content Include="Views\UserAccounts_63135741\Index.cshtml" />
+    <Content Include="Views\UserAccounts_63135741\Login_63135741.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

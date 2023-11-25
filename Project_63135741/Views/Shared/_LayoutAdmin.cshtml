@@ -1,4 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@{
+    try
+    {
+        string name = Session["UserName"].ToString();
+        if (name != null)
+        {
+            ViewBag.NguoiDung = "Hello: " + name + "!";
+        }
+        else
+        {
+            ViewBag.NguoiDung = "Thông tin người dùng: Chưa đăng nhập ";
+        }
+    }
+    catch
+    {
+
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,14 +31,23 @@
     <div class="header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home_63135741/Index")">
                     <img id="logo" src="~/Images/logo.png" />
+                </a>
+                @* HIỂN THỊ NGƯỜI DÙNG *@
+                <p id="nguoidung" style="margin-top: 15px; margin: 0 10px;"> @ViewBag.NguoiDung </p>
+                @* LOG OUT *@
+                <a class="logout-container" href="@Url.Action("Logout", "UserAccounts_63135741/Logout")">
+                    <img id="logout" src="~/Images/logout.png" style="width: 30px; height: 30px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                        <li class="d-flex mt-2 mr-5">
+
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link @if(ViewContext.RouteData.Values["Controller"].ToString() == "Home_63135741") { <text>active-tab</text> } ?>" href="@Url.Action("Index", "Home_63135741/Index")">
                                 Home
@@ -45,13 +73,25 @@
                                 Contact
                             </a>
                         </li>
+
+                        @* LOG IN *@
+                        <li class="nav-item user-container">
+                            <a id="user" class="nav-link" href="@Url.Action("Login_63135741", "UserAccounts_63135741/Login_63135741")">
+                                <img src="~/Images/user.png" style="width: 20px; height: 20px;">
+                            </a>
+                        </li>
+
                     </ul>
-                    <a class="cart" href="@Url.Action("Cart", "Foods_63135741/Cart")">
-                        <img src="~/Images/cart.png" style="width: 50px; height: 50px">
+                    <a class="cart" href="@Url.Action("Cart", "Foods_63135741/Cart")" style="text-decoration: none;">
+                        <img src="~/Images/cart.png" style="width: 40px; height: 40px; margin-right: 20px;">
+                        <span id="quantity-cart"></span>
                     </a>
+
+
                 </div>
             </div>
         </nav>
+
     </div>
 
     <div class="container mb-5">
@@ -103,8 +143,39 @@
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", false)
+
+    <script>
+        $(document).ready(function () {
+            var nguoiDung = "@ViewBag.NguoiDung";
+
+            if (nguoiDung.trim() === "") {
+                $(".logout-container").hide(); // Ẩn logout khi không có người dùng
+                $(".user-container").show(); // Hiển thị logout khi có người dùng
+            } else {
+                $(".logout-container").show(); // Hiển thị logout khi có người dùng
+                $(".user-container").hide(); // Ẩn user khi không có người dùng
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Để lấy giá trị từ local storage
+            var storedValue = localStorage.getItem('savedValue');
+            var spanHienThi = document.getElementById('quantity-cart');
+
+            if (storedValue !== null) {
+                // Thực hiện xử lý với giá trị từ local storage ở đây
+                spanHienThi.textContent = storedValue;
+            } else {
+                spanHienThi.textContent = 0;
+
+            }
+        });
+    </script>
 </body>
 </html>
 
@@ -119,7 +190,7 @@
         font-size: 17px;
     }
 
-    .nav-item{
+    .nav-item {
         font-weight: bold;
         margin-left: 10px;
     }
@@ -254,8 +325,28 @@
         color: red;
     }
 
-    .active-tab{
+    .active-tab {
         color: red;
+    }
+
+    .bx-user {
+        width: 50px;
+        height: 50px;
+    }
+
+    #quantity-cart {
+        font-weight: bold;
+        background-color: red;
+        color: #fff;
+        padding-left: 7px;
+        padding-right: 7px;
+        position: absolute;
+        border-radius: 50%;
+        margin-right: 20px;
+        top: 20px;
+        bottom: auto;
+        left: auto;
+        right: 5px;
     }
 </style>
 

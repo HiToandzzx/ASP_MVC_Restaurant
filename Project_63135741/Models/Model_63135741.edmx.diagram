@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="Project_63135741Model.KindOfMenu" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <AssociationConnector Association="Project_63135741Model.FK__Foods__KindID__5AEE82B9" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Project_63135741Model.BookTable" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Project_63135741Model.UserAccount" Width="1.5" PointX="8.625" PointY="2.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

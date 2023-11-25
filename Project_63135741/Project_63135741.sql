@@ -28,6 +28,18 @@ CREATE TABLE BookTable (
 	Note NVARCHAR(200) NOT NULL
 );
 
+CREATE TABLE UserAccount(
+    UserName NVARCHAR(50) NOT NULL,
+	Email varchar(50) PRIMARY KEY,
+	Admin bit,
+	Password nvarchar(50),
+	AddressUser NVARCHAR(50) NOT NULL
+)
+INSERT INTO UserAccount VALUES(N'Admin', 'admin@gmail.com', 1,'Admin@123', 'Admin')
+GO
+DELETE FROM UserAccount
+
+
 INSERT INTO BookTable (BookTableID, NameCus, PhoneCus, QuantityPP, TimeBook, DayBook, Note)
 VALUES ('TB001', 'John Doe', '123-456-7890', '2', '10:00:00', '2023-11-22', 'Window seat, please.');
 

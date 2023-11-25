@@ -35,6 +35,16 @@
           <Property Name="KindID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="NameOfKind" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin" Type="bit" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK__Foods__KindID__1332DBDC">
           <End Role="KindOfMenu" Type="Self.KindOfMenu" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -57,6 +67,7 @@
           <EntitySet Name="BookTable" EntityType="Self.BookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Foods" EntityType="Self.Foods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KindOfMenu" EntityType="Self.KindOfMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Foods__KindID__1332DBDC" Association="Self.FK__Foods__KindID__1332DBDC">
             <End Role="KindOfMenu" EntitySet="KindOfMenu" />
             <End Role="Foods" EntitySet="Foods" />
@@ -112,6 +123,7 @@
             <Parameter Name="MenuName" Mode="In" Type="String" />
             <Parameter Name="KindID" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="UserAccounts" EntityType="Project_63135741Model.UserAccount" />
         </EntityContainer>
         <EntityType Name="BookTable">
           <Key>
@@ -124,6 +136,16 @@
           <Property Name="TimeBook" Type="Time" Precision="7" Nullable="false" />
           <Property Name="DayBook" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -165,6 +187,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Find_Menu" FunctionName="Project_63135741Model.Store.Find_Menu" />
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="Project_63135741Model.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="AddressUser" ColumnName="AddressUser" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

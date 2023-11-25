@@ -30,6 +30,7 @@ namespace Project_63135741.Models
         public virtual DbSet<Food> Foods { get; set; }
         public virtual DbSet<KindOfMenu> KindOfMenus { get; set; }
         public virtual DbSet<BookTable> BookTables { get; set; }
+        public virtual DbSet<UserAccount> UserAccounts { get; set; }
     
         public virtual int Find_Menu(string menuName, string kindID)
         {

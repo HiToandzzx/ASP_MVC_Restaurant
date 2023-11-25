@@ -46,6 +46,7 @@
       <Parameter Name="MenuName" Mode="In" Type="String" />
       <Parameter Name="KindID" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="UserAccounts" EntityType="Project_63135741Model.UserAccount" />
   </EntityContainer>
   <EntityType Name="BookTable">
     <Key>
@@ -58,5 +59,15 @@
     <Property Name="TimeBook" Type="Time" Precision="7" Nullable="false" />
     <Property Name="DayBook" Type="DateTime" Precision="0" Nullable="false" />
     <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin" Type="Boolean" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddressUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
